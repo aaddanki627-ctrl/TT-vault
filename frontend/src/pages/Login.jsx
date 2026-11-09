@@ -2,12 +2,6 @@ import {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {useAuth} from '../context/AuthContext.jsx';
 
-const demoAccounts = [
-  {label: 'Administrator', email: 'admin@trustvault.demo', password: 'DemoAdmin!2026'},
-  {label: 'Document owner', email: 'owner@trustvault.demo', password: 'DemoOwner!2026'},
-  {label: 'Viewer', email: 'viewer@trustvault.demo', password: 'DemoViewer!2026'},
-];
-
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -71,24 +65,6 @@ export default function Login() {
 
           <p className="auth-switch">New to TrustVault? <Link to="/register">Create an account</Link></p>
 
-          <div className="demo-box">
-            <div className="demo-box-head">
-              <strong>Try a demo account</strong>
-              <span>Run <code>npm run seed:demo</code> in backend</span>
-            </div>
-            <div className="demo-list">
-              {demoAccounts.map((account) => (
-                <div className="demo-account" key={account.email}>
-                  <div>
-                    <strong>{account.label}</strong>
-                    <span>{account.email}</span>
-                    <code>{account.password}</code>
-                  </div>
-                  <button className="demo-fill" type="button" onClick={() => useDemo(account)}>Use login</button>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
     </main>
