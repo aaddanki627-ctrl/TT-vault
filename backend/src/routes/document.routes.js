@@ -1,0 +1,13 @@
+import express from 'express';
+import {upload,listMine,getOne,download,remove} from '../controllers/document.controller.js';
+import {requireAuth} from '../middleware/auth.js';
+import {loadDocument,requireDocAccess} from '../middleware/checkPermission.js';
+import {uploadSingle} from '../middleware/upload.js';
+const r=express.Router();
+r.use(requireAuth);
+r.post('/upload',uploadSingle,upload);
+r.get('/',listMine);
+r.get('/:id',loadDocument,requireDocAccess('READ'),getOne);
+r.get('/:id/download',loadDocument,requireDocAccess('READ'),download);
+r.delete('/:id',loadDocument,requireDocAccess('EDIT'),remove);
+export default r;

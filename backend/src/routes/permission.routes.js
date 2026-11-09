@@ -1,0 +1,10 @@
+import express from 'express';
+import {grant,revoke,listForDoc} from '../controllers/permission.controller.js';
+import {requireAuth} from '../middleware/auth.js';
+import {loadDocument,requireDocAccess} from '../middleware/checkPermission.js';
+const r=express.Router();
+r.use(requireAuth);
+r.post('/:id/grant',loadDocument,grant);
+r.delete('/:id/revoke/:userId',loadDocument,revoke);
+r.get('/:id',loadDocument,requireDocAccess('READ'),listForDoc);
+export default r;
