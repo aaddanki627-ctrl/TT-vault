@@ -9,7 +9,7 @@ import permRoutes from './routes/permission.routes.js';
 import auditRoutes from './routes/audit.routes.js';
 const app=express();
 app.use(helmet());
-app.use(cors({origin:process.env.FRONTEND_URL||'http://localhost:5173',credentials:true}));
+app.use(cors({origin:process.env.FRONTEND_URL||'https://trust-vault-1op2.onrender.com',credentials:true}));
 app.use(express.json({limit:'1mb'}));
 app.use(morgan('dev'));
 app.use('/api/auth',rateLimit({windowMs:15*60*1000,max:100}),authRoutes);
